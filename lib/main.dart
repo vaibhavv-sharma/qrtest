@@ -262,7 +262,7 @@ class _MyAppState extends State<MyApp> {
           builder: (BuildContext b) {
             return Container(
               color: Colors.white70,
-              height: MediaQuery.of(context).size.height * 0.15,
+              height: 100,
               child: Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Container(
