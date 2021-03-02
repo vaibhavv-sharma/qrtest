@@ -250,19 +250,19 @@ class _MyAppState extends State<MyApp> {
     super.dispose();
   }
 
-  void _onQRViewCreate(QRViewController _controller) {
-    this._controller = _controller;
-    _controller.scannedDataStream.listen((scanData) {
+  void _onQRViewCreate(QRViewController controller) {
+    this._controller = controller;
+    controller.scannedDataStream.listen((scanData) {
       setState(() async {
         _qrText = scanData;
-        _controller.pauseCamera();
+        controller.pauseCamera();
         showModalBottomSheet(
           enableDrag: true,
           context: context,
           builder: (BuildContext b) {
             return Container(
               color: Colors.white70,
-              height: 100,
+              height: MediaQuery.of(context).size.height * 0.15,
               child: Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Container(
@@ -283,7 +283,7 @@ class _MyAppState extends State<MyApp> {
               ),
             );
           },
-        ).whenComplete(() async => _controller.resumeCamera());
+        ).whenComplete(() async => controller.resumeCamera());
       });
     });
   }

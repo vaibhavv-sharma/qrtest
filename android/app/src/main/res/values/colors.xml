@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="ic_launcher_background">#e5e5e5</color>
+<<<<<<< HEAD
     <color name="splash">#e5e5e5</color>
+=======
+>>>>>>> 95fd44270aaf7d786b504d55ca27e102b51cbe87
 </resources>

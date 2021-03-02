@@ -7,7 +7,12 @@
     <item>
         <bitmap
             android:gravity="center"
+<<<<<<< HEAD
             android:src="@drawable/picture1"/>
     </item>
   
+=======
+            android:src="@drawable/picture1" />
+    </item> 
+>>>>>>> 95fd44270aaf7d786b504d55ca27e102b51cbe87
 </layer-list>
