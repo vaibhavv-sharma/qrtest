@@ -25,52 +25,50 @@ class _MyAppState extends State<MyApp> {
     }
   }
 
-  int p = 0;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: <Widget>[
-          Container(
-            alignment: Alignment.topCenter,
-            child: QRView(
-                key: _qrKey,
-                overlay: QrScannerOverlayShape(
-                  borderRadius: 10,
-                  borderColor: Colors.blueGrey,
-                  borderLength: 30,
-                  borderWidth: 10,
-                  cutOutSize: 300,
-                ),
-                onQRViewCreated: _onQRViewCreate),
-          ),
-          Container(
-            color: Colors.transparent.withOpacity(0),
-            alignment: Alignment.topCenter,
-            height: 100,
-            child: Padding(
-              padding: EdgeInsets.all(20),
-              child: Row(
-                children: [
-                  Text(
-                    '  QR Scanner',
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.white,
-                    ),
+    return MaterialApp(
+      home: Scaffold(
+        body: Stack(
+          children: <Widget>[
+            Container(
+              alignment: Alignment.topCenter,
+              child: QRView(
+                  key: _qrKey,
+                  overlay: QrScannerOverlayShape(
+                    borderRadius: 10,
+                    borderColor: Colors.blueGrey,
+                    borderLength: 30,
+                    borderWidth: 10,
+                    cutOutSize: 300,
                   ),
-                  Spacer(),
-                  FlatButton(
-                    minWidth: 5,
-                    onPressed: () {
-                      showDialog(
-                          context: context,
-                          builder: (context) {
-                            return AlertDialog(
-                              actions: <Widget>[
-                                FlatButton(
-                                  onPressed: null,
-                                  child: Column(
+                  onQRViewCreated: _onQRViewCreate),
+            ),
+            Container(
+              color: Colors.transparent.withOpacity(0),
+              alignment: Alignment.topCenter,
+              height: 100,
+              child: Padding(
+                padding: EdgeInsets.all(20),
+                child: Row(
+                  children: [
+                    Text(
+                      '  QR Scanner',
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.white,
+                      ),
+                    ),
+                    Spacer(),
+                    FlatButton(
+                      minWidth: 5,
+                      onPressed: () {
+                        showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                actions: <Widget>[
+                                  Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
@@ -147,7 +145,7 @@ class _MyAppState extends State<MyApp> {
                                                 ),
                                               ),
                                               const Text(
-                                                ' ',
+                                                '',
                                               ),
                                               Text(
                                                 'Developers:',
@@ -212,42 +210,36 @@ class _MyAppState extends State<MyApp> {
                                       ),
                                     ],
                                   ),
-                                ),
-                              ],
-                            );
-                          });
-                    },
-                    child: Container(
-                      width: 30,
-                      height: 30,
-                      decoration: new BoxDecoration(
-                        color: Colors.transparent,
-                        border: Border.all(color: Colors.white),
-                        shape: BoxShape.circle,
-                      ),
-                      child: const Text(
-                        "i",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 22,
-                          color: Colors.white,
+                                ],
+                              );
+                            });
+                      },
+                      child: Container(
+                        width: 30,
+                        height: 30,
+                        decoration: new BoxDecoration(
+                          color: Colors.transparent,
+                          border: Border.all(color: Colors.white),
+                          shape: BoxShape.circle,
+                        ),
+                        child: const Text(
+                          "i",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 22,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    _controller?.dispose();
-    super.dispose();
   }
 
   void _onQRViewCreate(QRViewController controller) {
@@ -262,7 +254,7 @@ class _MyAppState extends State<MyApp> {
           builder: (BuildContext b) {
             return Container(
               color: Colors.white70,
-              height: MediaQuery.of(context).size.height * 0.15,
+              height: 100,
               child: Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Container(
