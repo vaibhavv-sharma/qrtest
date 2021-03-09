@@ -60,8 +60,11 @@ class _MyAppState extends State<MyApp> {
                       ),
                     ),
                     Spacer(),
-                    FlatButton(
-                      minWidth: 5,
+                    Container(
+                      color: Colors.transparent,
+                      child: Text('0'),
+                    ),
+                    TextButton(
                       onPressed: () {
                         showDialog(
                             context: context,
@@ -181,7 +184,7 @@ class _MyAppState extends State<MyApp> {
                                               minWidth: 100, maxWidth: 300),
                                           child: Row(
                                             children: [
-                                              FlatButton(
+                                              TextButton(
                                                 onPressed: () {
                                                   _launchURLBrowser(
                                                       'https://qrcodefeedback.mathrithms.com/');
@@ -196,12 +199,16 @@ class _MyAppState extends State<MyApp> {
                                                 ),
                                               ),
                                               Spacer(),
-                                              Text(
-                                                'Github',
-                                                style: TextStyle(
-                                                  fontSize: 13,
-                                                  fontWeight: FontWeight.w400,
-                                                  color: Colors.grey[600],
+                                              TextButton(
+                                                onPressed: () => _launchURLBrowser(
+                                                    'https://github.com/mathrithms/QRCodeScanner.git'),
+                                                child: Text(
+                                                  'Github',
+                                                  style: TextStyle(
+                                                    fontSize: 13,
+                                                    fontWeight: FontWeight.w400,
+                                                    color: Colors.grey[600],
+                                                  ),
                                                 ),
                                               ),
                                             ],
