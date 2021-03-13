@@ -60,10 +60,6 @@ class _MyAppState extends State<MyApp> {
                       ),
                     ),
                     Spacer(),
-                    Container(
-                      color: Colors.transparent,
-                      child: Text('0'),
-                    ),
                     TextButton(
                       onPressed: () {
                         showDialog(
