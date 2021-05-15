@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:qr_code_scanner/qr_scanner_overlay_shape.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -14,6 +15,8 @@ class MyApp extends StatefulWidget {
 const double windowHeight = 200;
 
 class _MyAppState extends State<MyApp> {
+  var logo = "assets/logo.svg";
+
   GlobalKey _qrKey = GlobalKey();
   var _qrText = "";
   QRViewController _controller;
@@ -34,15 +37,16 @@ class _MyAppState extends State<MyApp> {
             Container(
               alignment: Alignment.topCenter,
               child: QRView(
-                  key: _qrKey,
-                  overlay: QrScannerOverlayShape(
-                    borderRadius: 10,
-                    borderColor: Colors.blueGrey,
-                    borderLength: 30,
-                    borderWidth: 10,
-                    cutOutSize: 300,
-                  ),
-                  onQRViewCreated: _onQRViewCreate),
+                key: _qrKey,
+                overlay: QrScannerOverlayShape(
+                  borderRadius: 10,
+                  borderColor: Colors.blueGrey,
+                  borderLength: 30,
+                  borderWidth: 10,
+                  cutOutSize: 300,
+                ),
+                onQRViewCreated: _onQRViewCreate,
+              ),
             ),
             Container(
               color: Colors.transparent.withOpacity(0),
@@ -52,57 +56,69 @@ class _MyAppState extends State<MyApp> {
                 padding: EdgeInsets.all(20),
                 child: Row(
                   children: [
-                    Text(
-                      '  QR Scanner',
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.white,
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20, top: 10),
+                      child: Text(
+                        'QR Reader',
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                     Spacer(),
-                    Container(
-                      color: Colors.transparent,
-                      child: Text('0'),
-                    ),
                     TextButton(
                       onPressed: () {
                         showDialog(
                             context: context,
                             builder: (context) {
+                              this._controller.pauseCamera();
                               return AlertDialog(
                                 actions: <Widget>[
                                   Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Row(
-                                        children: [
-                                          Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Container(
-                                                child: const Text(
-                                                  'QR Scanner',
-                                                  style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontSize: 15,
-                                                    fontWeight: FontWeight.bold,
+                                      Padding(
+                                        padding: const EdgeInsets.all(15),
+                                        child: Row(
+                                          children: [
+                                            Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Container(
+                                                  child: const Text(
+                                                    'QR Reader',
+                                                    style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontSize: 15,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
                                                   ),
                                                 ),
-                                              ),
-                                              Container(
-                                                child: const Text(
-                                                  'by Mathrithms',
-                                                  style: TextStyle(
-                                                    fontSize: 12,
-                                                    fontWeight: FontWeight.w300,
+                                                Container(
+                                                  child: const Text(
+                                                    'by Mathrithms',
+                                                    style: TextStyle(
+                                                      fontSize: 12,
+                                                      fontWeight:
+                                                          FontWeight.w300,
+                                                    ),
                                                   ),
                                                 ),
-                                              ),
-                                            ],
-                                          ),
-                                        ],
+                                              ],
+                                            ),
+                                            Spacer(),
+                                            SvgPicture.asset(
+                                              logo,
+                                              height: 50,
+                                              width: 50,
+                                            )
+                                          ],
+                                        ),
                                       ),
                                       Padding(
                                         padding: const EdgeInsets.all(5),
@@ -123,12 +139,16 @@ class _MyAppState extends State<MyApp> {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.center,
                                             children: [
-                                              Text(
-                                                'Version 0.0.1',
-                                                style: TextStyle(
-                                                  fontSize: 13,
-                                                  fontWeight: FontWeight.w400,
-                                                  color: Colors.grey[600],
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    top: 10),
+                                                child: Text(
+                                                  'Version 0.0.1',
+                                                  style: TextStyle(
+                                                    fontSize: 13,
+                                                    fontWeight: FontWeight.w400,
+                                                    color: Colors.grey[600],
+                                                  ),
                                                 ),
                                               ),
                                               Text(
@@ -150,6 +170,9 @@ class _MyAppState extends State<MyApp> {
                                               const Text(
                                                 '',
                                               ),
+                                              const Text(
+                                                '',
+                                              ),
                                               Text(
                                                 'Developers:',
                                                 style: TextStyle(
@@ -158,12 +181,16 @@ class _MyAppState extends State<MyApp> {
                                                   color: Colors.grey[600],
                                                 ),
                                               ),
-                                              Text(
-                                                'Vaibhav Sharma',
-                                                style: TextStyle(
-                                                  fontSize: 11,
-                                                  fontWeight: FontWeight.w400,
-                                                  color: Colors.grey[600],
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    bottom: 10),
+                                                child: Text(
+                                                  'Vaibhav Sharma',
+                                                  style: TextStyle(
+                                                    fontSize: 11,
+                                                    fontWeight: FontWeight.w400,
+                                                    color: Colors.grey[600],
+                                                  ),
                                                 ),
                                               ),
                                             ],
@@ -219,23 +246,16 @@ class _MyAppState extends State<MyApp> {
                                   ),
                                 ],
                               );
-                            });
+                            }).then(
+                          (value) => this._controller.resumeCamera(),
+                        );
                       },
-                      child: Container(
-                        width: 30,
-                        height: 30,
-                        decoration: new BoxDecoration(
-                          color: Colors.transparent,
-                          border: Border.all(color: Colors.white),
-                          shape: BoxShape.circle,
-                        ),
-                        child: const Text(
-                          "i",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 22,
-                            color: Colors.white,
-                          ),
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 15),
+                        child: Icon(
+                          Icons.info_outline_rounded,
+                          color: Colors.white,
+                          size: 30,
                         ),
                       ),
                     ),
@@ -251,35 +271,54 @@ class _MyAppState extends State<MyApp> {
 
   void _onQRViewCreate(QRViewController controller) {
     this._controller = controller;
+
+    controller.pauseCamera();
     controller.scannedDataStream.listen((scanData) {
       setState(() async {
         _qrText = scanData;
         controller.pauseCamera();
         showModalBottomSheet(
+          barrierColor: Color(0xff2f2e41).withOpacity(0.6),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20),
+              topRight: Radius.circular(20),
+            ),
+          ),
+          backgroundColor: Colors.white70,
           enableDrag: true,
           context: context,
           builder: (BuildContext b) {
-            return Container(
-              color: Colors.white70,
-              height: 100,
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Container(
-                  alignment: Alignment.topCenter,
-                  child: InkWell(
-                    child: Text(
-                      _qrText,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.blue,
-                        decoration: TextDecoration.underline,
+            return Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  color: Colors.white70,
+                  height: 100,
+                  child: Padding(
+                    padding: const EdgeInsets.all(6),
+                    child: Container(
+                      color: Color(0xffF0EAD6),
+                      alignment: Alignment.topCenter,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: InkWell(
+                          child: Text(
+                            _qrText,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.blue,
+                              decoration: TextDecoration.underline,
+                            ),
+                          ),
+                          onTap: () => _launchURLBrowser(_qrText),
+                        ),
                       ),
                     ),
-                    onTap: () => _launchURLBrowser(_qrText),
                   ),
                 ),
-              ),
+              ],
             );
           },
         ).whenComplete(() async => controller.resumeCamera());

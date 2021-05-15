@@ -24,23 +24,23 @@ dependencies:
   flutter:
     sdk: flutter
   qr_code_scanner: 0.0.12
-  url_launcher: ^5.7.8
+  url_launcher: ^6.0.3
+
+  flutter_svg: ^0.22.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.0
+  cupertino_icons: ^1.0.3
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_launcher_icons: "^0.8.0"
+  flutter_launcher_icons: ^0.9.0
 
 flutter_icons:
   android: true
   ios: true
-  image_path: "assets/picture1.png"
-  adaptive_icon_background: "#e5e5e5"
-  adaptive_icon_foreground: "assets/picture1.png"
+  image_path: "assets/logo.svg"
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
@@ -54,6 +54,7 @@ flutter:
 
   assets:
   - ./assets/picture1.png
+  - ./assets/logo.svg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
