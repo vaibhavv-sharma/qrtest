@@ -2,7 +2,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
-import 'package:qr_code_scanner/qr_scanner_overlay_shape.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 void main() => runApp(MaterialApp(home: MyApp()));
@@ -275,10 +274,10 @@ class _MyAppState extends State<MyApp> {
     controller.pauseCamera();
     controller.scannedDataStream.listen((scanData) {
       setState(() async {
-        _qrText = scanData;
+        _qrText = scanData as String;
         controller.pauseCamera();
         showModalBottomSheet(
-          barrierColor: Color(0xff2f2e41).withOpacity(0.6),
+          barrierColor: Color(0xff2f2e41).withOpacity(0.5),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(20),
